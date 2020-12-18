@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, ReflectiveInjector } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
 
 @Component({
@@ -7,15 +7,13 @@ import { WikipediaService } from './wikipedia.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = '';
-
   pages = [];
 
-  constructor(private wiki: WikipediaService){}
+  constructor(private wikipedia: WikipediaService) {}
 
-  onTerm(term:string){
-    this.wiki.search(term).subscribe((response:any)=>{
+  onTerm(term: string) {
+    this.wikipedia.search(term).subscribe((response: any) => {
       this.pages = response.query.search;
-    })
+    });
   }
 }
